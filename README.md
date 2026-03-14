@@ -150,16 +150,38 @@ Install both for maximum flexibility. Skills give you the `/drupal-planner` and 
 
 The agents at `~/.claude/agents/drupal-*.md` are automatically available in Claude Code's agent system. They run at Opus tier — they plan but do not implement.
 
-### When to use it
+### When to use each command (Jobs To Be Done)
 
-- Designing a new feature (entity types, modules, config, permissions, cache, theme)
-- Planning a new content type, config entity, or field structure
-- Making contrib vs custom module decisions
-- Designing a migration from an existing or legacy site
-- Planning permission and access control models
-- Designing a caching strategy for performance-critical features
-- Refactoring an existing Drupal architecture
-- Fixing drupal-critic REVISE findings with architectural redesign
+**`/drupal-planner`** — Full implementation planning
+
+- When I'm starting a new feature that touches entities, permissions, cache, and theme, I want a complete architecture plan so I can hand it to a developer who implements it correctly without back-and-forth.
+- When I'm migrating a legacy site to Drupal, I want a migration architecture with source-target mapping and rollback strategy so I can execute the migration confidently without data loss.
+- When I have a drupal-critic REVISE verdict, I want a focused redesign plan for the specific architectural issues so I can fix the root cause instead of patching symptoms.
+- When I need to refactor a module that's grown unwieldy, I want a clear plan for splitting responsibilities so I can break the work into safe, reviewable steps.
+
+**`/drupal-planner.content-model`** — Content model architecture
+
+- When I'm redesigning a site with a flat "Page" content type, I want a content model plan with entity types, bundles, and field architecture so I can migrate to a structured model without creating entity proliferation.
+- When I need to decide between Paragraphs, Layout Builder, and block content, I want a composition pattern analysis so I can choose the approach that matches my editors' workflow.
+- When I'm adding a new content type and I'm not sure how it relates to existing entities, I want a relationship diagram so I can avoid orphaned references and query performance problems.
+
+**`/drupal-planner.taxonomy`** — Taxonomy and classification
+
+- When I'm building an e-commerce site and need product categorization, I want a vocabulary structure with hierarchy depth and facet configuration so I can support both browsing and filtering without term explosion.
+- When I have overlapping tags and categories that confuse editors, I want a taxonomy consolidation plan so I can clean up the classification without breaking existing content references.
+- When I need faceted navigation on a content listing, I want a plan that connects vocabularies to the Facets module and Views so I can implement filtering that actually works with Drupal's cache layer.
+
+**`/drupal-planner.theme`** — Theme architecture
+
+- When I'm starting a Drupal 11 site and need to choose between Starterkit, Olivero, and a custom base theme, I want a theme architecture plan so I can avoid a decision that's expensive to reverse after templates are built.
+- When I need to adopt a component-based approach (SDC) and don't know how it fits with our existing theme, I want a component strategy and CSS methodology so I can migrate incrementally without breaking the site.
+- When preprocess functions are accumulating business logic, I want a theme refactoring plan so I can move logic to services while keeping templates thin and testable.
+
+**`/drupal-planner.search`** — Search and discovery
+
+- When I'm building search for a content-heavy site and need to choose between Solr, Elasticsearch, and the database backend, I want a backend comparison with my specific content volume and query patterns so I can pick the right backend before committing to infrastructure.
+- When I need faceted search on a content listing, I want a Search API index design with field mapping and processor selection so I can build facets that are fast, relevant, and cache-friendly.
+- When users are getting poor search results and high zero-result rates, I want a search architecture review and redesign plan so I can improve discoverability without starting from scratch.
 
 ### When not to use it
 

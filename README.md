@@ -25,7 +25,7 @@ drupal-planner runs a **10-phase planning protocol** that covers every architect
 1. **Scope & Context** — Feature definition, Drupal version detection, constraint identification
 2. **Existing Architecture Analysis** — Current entity types, modules, hooks, services, config strategy, conventions, pain points
 3. **Data Model Design** — Entity types with one-sentence purposes, content vs config classification, bundles, fields (type/cardinality/required/widget), entity relationship diagram
-4. **Module Architecture** — Contrib-first evaluation using the [contrib evaluation rubric](/.claude/skills/drupal-planner/references/contrib-evaluation-rubric.md), custom module justification, plugin/service/hook responsibilities
+4. **Module Architecture** — Contrib-first evaluation using the [contrib evaluation rubric](.claude/skills/drupal-planner/references/contrib-evaluation-rubric.md), custom module justification, plugin/service/hook responsibilities
 5. **Configuration Schema** — Every config item classified (simple config / config entity / State API), schema definition, export strategy (config/install vs config/optional vs environment-specific)
 6. **Permission & Access Model** — All permissions defined, role-to-permission mapping with rationale, workflow state transitions, field-level access
 7. **Cache Strategy** — Every cacheable item tagged with contexts and max-age, invalidation triggers, Dynamic Page Cache / BigPipe compatibility
@@ -35,7 +35,7 @@ drupal-planner runs a **10-phase planning protocol** that covers every architect
 
 ### Planning rubric
 
-Every plan is evaluated against a [quality rubric](/.claude/skills/drupal-planner/references/drupal-planning-rubric.md) covering 8 dimensions:
+Every plan is evaluated against a [quality rubric](.claude/skills/drupal-planner/references/drupal-planning-rubric.md) covering 8 dimensions:
 
 1. **Entity Design** — One-sentence purpose, content/config classification, relationship diagram, field specifications, state ownership justification
 2. **Module Architecture** — Contrib-first evaluation, single responsibility, plugin types, service dependencies, hook documentation
@@ -48,7 +48,7 @@ Every plan is evaluated against a [quality rubric](/.claude/skills/drupal-planne
 
 ### Contrib evaluation rubric
 
-Every module decision uses a [structured evaluation framework](/.claude/skills/drupal-planner/references/contrib-evaluation-rubric.md) weighing functionality match, security coverage, maintenance activity, download count, Drupal version support, issue queue health, code quality, and performance impact.
+Every module decision uses a [structured evaluation framework](.claude/skills/drupal-planner/references/contrib-evaluation-rubric.md) weighing functionality match, security coverage, maintenance activity, download count, Drupal version support, issue queue health, code quality, and performance impact.
 
 ### Hard gates
 
@@ -75,7 +75,7 @@ Plans scale to feature complexity — no 15-page plans for adding a field:
 
 ### Router pattern
 
-The main planner also acts as a router: when the request is clearly focused on a specific subsystem, it suggests the appropriate sub-planner. See [sub-planner routing map](/.claude/skills/drupal-planner/references/sub-planner-routing-map.md) for the full decision tree.
+The main planner also acts as a router: when the request is clearly focused on a specific subsystem, it suggests the appropriate sub-planner. See [sub-planner routing map](.claude/skills/drupal-planner/references/sub-planner-routing-map.md) for the full decision tree.
 
 ## Output format
 

@@ -4,17 +4,15 @@ A Drupal-specific planning skill for [Claude Code](https://docs.anthropic.com/en
 
 This is the companion planner to [drupal-critic](https://github.com/zivtech/drupal-critic). The planner designs architectures before code; the critic reviews implementations after code.
 
-## The problem with unplanned Drupal implementations
+## Why plan Drupal implementations?
 
-Drupal's hardest bugs are design bugs. They originate before the first line of PHP:
+Drupal architecture decisions are high-consequence and hard to reverse once content exists. Entity type structures, field cardinality, module boundaries, and config schemas all get expensive to change after implementation. drupal-planner exists because:
 
-- "Add a review system" → Developer creates a content type without specifying relationships to products, discovers later it's hard to query reviews-per-product, requires entity reference field addition and data migration.
-- "Add caching to search results" → Developer caches without specifying cache tags, invalidation breaks in production when products change. Bugs are invisible until load tests.
-- "We need a permission model" → Developer builds permissions without understanding when `hook_node_access` runs, creates privilege escalation bugs.
-- "Migrate from our legacy system" → Developer writes migrations assuming they're idempotent, discovers mid-deployment that re-runs duplicate data.
-- "Build a custom module for reviews" → Turns out contrib module `reviews_extra` exists, now we own security updates instead of upstream.
-
-Every one of these is preventable with architectural planning upfront. The cheapest time to prevent a Drupal bug is before the first PHP file is written.
+- **A tech lead handing off a feature** needs an architecture spec clear enough that the developer builds it right the first time — entity relationships, permission model, cache strategy, migration path — without weeks of back-and-forth.
+- **An architect choosing between contrib and custom** needs a structured evaluation before committing to a maintenance path that lasts years.
+- **A team redesigning a content model** needs entity types, bundles, and field architecture mapped out before touching the database — because changing entity structure after content exists requires migrations.
+- **A developer planning a site migration** needs source-to-target mapping with idempotency guarantees and rollback strategy before the first migration runs.
+- **A team building a new site** needs taxonomy, search, and theme architecture planned together before implementation scatters decisions across subsystems that are hard to reconcile later.
 
 ## How it works
 

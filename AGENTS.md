@@ -2,9 +2,11 @@
 
 ## Overview
 
-This repository contains 5 Drupal planning agents organized as a main planner + 4 focused sub-planners. All agents are Opus tier and produce architecture specifications (not implementation code).
+This repository contains 5 Drupal planning agents and 1 executor, organized as a main planner + 4 focused sub-planners + an executor that generates config YAML from planner specs. Planning agents are Opus tier and produce architecture specifications. The executor is Opus tier and produces Drupal configuration YAML.
 
 ## Agent Registry
+
+### Planners
 
 | Agent | Type | Model | Skill Command | Companion Critic |
 |-------|------|-------|---------------|-----------------|
@@ -13,6 +15,12 @@ This repository contains 5 Drupal planning agents organized as a main planner + 
 | drupal-taxonomy-planner | planner | opus | `/drupal-planner.taxonomy` | taxonomy-critic |
 | drupal-theme-planner | planner | opus | `/drupal-planner.theme` | drupal-theme-critic |
 | drupal-search-planner | planner | opus | `/drupal-planner.search` | search-discovery-critic |
+
+### Executors
+
+| Agent | Type | Model | Skill Command | Upstream Planner | Downstream Critic |
+|-------|------|-------|---------------|-----------------|-------------------|
+| drupal-config-executor | executor | opus | `/drupal-config-executor` | drupal-planner.content-model, .taxonomy, .search | content-model-critic, drupal-critic |
 
 ## Architecture
 
@@ -36,9 +44,18 @@ This repository contains 5 Drupal planning agents organized as a main planner + 
          │           Solr/ES,                       │
          └──────────▶faceted search◀───────────────┘
                      discovery
+                        │
+                        ▼
+              drupal-config-executor
+              Generates config YAML from
+              planner specs (config/install/)
+                        │
+                        ▼
+              content-model-critic +
+              drupal-critic (review)
 
-Planner → Engineer → Critic feedback loop:
-  drupal-planner.* designs → engineer implements → companion critic reviews
+Planner → Executor → Critic feedback loop:
+  drupal-planner.* designs → drupal-config-executor generates → critics review
 ```
 
 ## Planner-Critic Companion Map
@@ -49,6 +66,14 @@ drupal-content-model-planner ───────────────▶ co
 drupal-taxonomy-planner ────────────────────▶ taxonomy-critic (meta-skills)
 drupal-theme-planner ───────────────────────▶ drupal-theme-critic (meta-skills)
 drupal-search-planner ──────────────────────▶ search-discovery-critic (meta-skills)
+```
+
+## Planner-Executor-Critic Loop
+
+```
+drupal-planner.content-model ──▶ drupal-config-executor ──▶ content-model-critic
+drupal-planner.taxonomy ───────▶ drupal-config-executor ──▶ drupal-critic
+drupal-planner.search ─────────▶ drupal-config-executor ──▶ drupal-critic
 ```
 
 ## Sub-Planner Interaction Patterns
@@ -80,6 +105,7 @@ Sub-planners often work together for complex projects:
 .claude/agents/drupal-taxonomy-planner.md                           # Taxonomy agent
 .claude/agents/drupal-theme-planner.md                              # Theme agent
 .claude/agents/drupal-search-planner.md                             # Search agent
+.claude/agents/drupal-config-executor.md                            # Config executor agent
 .claude/skills/drupal-planner/SKILL.md                              # Main skill + router
 .claude/skills/drupal-planner/references/contrib-evaluation-rubric.md
 .claude/skills/drupal-planner/references/drupal-planning-rubric.md
@@ -88,6 +114,7 @@ Sub-planners often work together for complex projects:
 .claude/skills/drupal-planner.taxonomy/SKILL.md                     # Taxonomy sub-skill
 .claude/skills/drupal-planner.theme/SKILL.md                        # Theme sub-skill
 .claude/skills/drupal-planner.search/SKILL.md                       # Search sub-skill
+.claude/skills/drupal-config-executor/SKILL.md                      # Config executor skill
 ```
 
 ## External Dependencies

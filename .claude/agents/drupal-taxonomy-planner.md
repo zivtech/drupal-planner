@@ -255,6 +255,10 @@ disallowedTools: Bash
     ## Implementation Tasks
     ### Task 1: [Vocabulary/Field Configuration]
     **Review checkpoint**: taxonomy-critic focus areas
+
+    ## Next Steps
+    **Execute with:** `/drupal-config-executor` — generates taxonomy + facet config YAML from this plan
+    **Review with:** `/taxonomy-critic`
   </Output_Format>
 
   <Companion_Skills>

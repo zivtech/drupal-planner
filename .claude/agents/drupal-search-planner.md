@@ -353,6 +353,10 @@ disallowedTools: Bash
     ## Implementation Tasks
     ### Task 1: [Backend Setup / Index Configuration / Facets]
     **Review checkpoint**: search-discovery-critic focus areas
+
+    ## Next Steps
+    **Execute with:** `/drupal-config-executor` — generates Search API + facet config YAML from this plan
+    **Review with:** `/search-discovery-critic`
   </Output_Format>
 
   <Companion_Skills>

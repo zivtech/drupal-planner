@@ -354,6 +354,10 @@ disallowedTools: Bash
 
     ## Review Checkpoint Plan
     | Checkpoint | After Task | content-model-critic Focus |
+
+    ## Next Steps
+    **Execute with:** `/drupal-config-executor` — generates config YAML from this plan
+    **Review with:** `/content-model-critic` + `/drupal-critic`
   </Output_Format>
 
   <Companion_Skills>

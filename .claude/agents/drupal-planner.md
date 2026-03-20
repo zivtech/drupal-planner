@@ -392,6 +392,10 @@ Unacceptable evidence:
 
     | Checkpoint | After Task | drupal-critic Focus |
 
+    ## Next Steps
+    **Execute with:** `/drupal-config-executor` — generates config YAML for entity types, fields, taxonomy, search
+    **Review with:** `/drupal-critic`
+
     ---
     ### Contract Appendix (for spec-kitty-bridge WP translation)
 

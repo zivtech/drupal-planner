@@ -1,6 +1,6 @@
 # drupal-planner
 
-> **This repository has been consolidated into [drupal-meta-skill](https://github.com/zivtech/drupal-meta-skill).**
+> **This repository has been consolidated into [drupal-meta-skills](https://github.com/zivtech/drupal-meta-skills).**
 > Use the consolidated repo for new installs and updates. It now contains the planner, the Drupal critic, and the config executor in one bundle.
 
 A Drupal-specific planning skill for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) that designs implementation architectures before the first line of code is written. It produces specifications precise enough that a developer with zero context can implement them correctly on the first try — entity types with relationships, field structures, permission models, cache strategies, migration paths, and implementation task sequences with review checkpoints.
